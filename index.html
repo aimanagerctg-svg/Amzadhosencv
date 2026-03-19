@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amzad Hosen's CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=DM+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        header {
+            background-color: navy;
+            color: gold;
+            text-align: center;
+            padding: 20px 0;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: gold;
+            text-decoration: none;
+        }
+        section {
+            padding: 15px;
+            margin: 10px;
+        }
+        .toggle {
+            cursor: pointer;
+            padding: 5px;
+            background-color: navy;
+            color: gold;
+            border: none;
+            border-radius: 5px;
+        }
+        .skill-bar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .skill-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: gold;
+            transition: width 1s;
+        }
+        .qr-code {
+            margin: 20px;
+        }
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Amzad Hosen</h1>
+        <nav>
+            <a href="#objective">Objective</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#certificates">Certificates</a>
+            <a class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</a>
+            <a onclick="printCV()">Print CV</a>
+        </nav>
+    </header>
+    <section id="objective">
+        <h2>Objective</h2>
+        <p>Your objective goes here.</p>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <p>Your experience goes here.</p>
+    </section>
+    <section id="education">
+        <h2>Education</h2>
+        <p>Your education goes here.</p>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skill-bar">
+            <div class="skill-fill" style="width: 80%;">Skill 1 (80%)</div>
+        </div>
+        <div class="skill-bar">
+            <div class="skill-fill" style="width: 70%;">Skill 2 (70%)</div>
+        </div>
+    </section>
+    <section id="certificates">
+        <h2>Certificates</h2>
+        <p>Your certificates go here.</p>
+    </section>
+    <section id="qr-code" class="qr-code">
+        <h2>QR Code</h2>
+        <div id="qrCodeOutput"></div>
+        <input type="text" id="qrInput" placeholder="URL for QR Code">
+        <button onclick="generateQRCode()">Generate QR Code</button>
+    </section>
+    <footer>
+        <p>&copy; 2026 Amzad Hosen</p>
+        <div id="clock"></div>
+    </footer>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+        }
+        function printCV() {
+            window.print();
+        }
+        function generateQRCode() {
+            const url = document.getElementById('qrInput').value;
+            const qrCodeOutput = document.getElementById('qrCodeOutput');
+            qrCodeOutput.innerHTML = '';
+            const qrCode = new QRCode(qrCodeOutput, {
+                text: url,
+                width: 128,
+                height: 128,
+            });
+        }
+        function updateClock() {
+            const now = new Date();
+            const utcString = now.toUTCString();
+            document.getElementById('clock').innerText = utcString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</body>
+</html>
